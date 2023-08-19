@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var journeySchema = new Schema({
-    registerID: String,
+    whoWrite: String,
 
     isMatch: { type: Boolean, default: false },
     isFinish: { type: Boolean, default: false },
@@ -11,12 +11,11 @@ var journeySchema = new Schema({
     destination: String,
     rideType: String,
 
-    date: String,
-    time: String,
-    seatCount: String,
+    pickedDate: String,
+    peopleRide: String,
     price: Number,
 
-    intro: String
+    introduce: String
 });
 
 
