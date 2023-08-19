@@ -7,7 +7,7 @@ var User = require('../models/user')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send('respond with a resource123');
+  res.send('respond with a users');
 });
 
 router.post("/signup", async (req, res) => {
