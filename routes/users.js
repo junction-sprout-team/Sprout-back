@@ -14,13 +14,13 @@ router.post("/signup", async (req, res) => {
   try {
     console.log(req.body);
     await connectMongo();
-    // Check if the email or name already exists in the database
-    var existingUser = await User.findOne({ $or: [{ email: req.body.email }, { name: req.body.name }] });
+    // Check if the userID or userName already exists in the database
+    var existingUser = await User.findOne({ $or: [{ userID: req.body.userID }, { userName: req.body.userName }] });
     if (existingUser) {
-      if (existingUser.email === req.body.email) {
-        res.status(400).json({ message: "Email already exists" });
-      } else if (existingUser.name === req.body.name) {
-        res.status(400).json({ message: "Name already exists" });
+      if (existingUser.userID === req.body.userID) {
+        res.status(400).json({ message: "userID already exists" });
+      } else if (existingUser.userName === req.body.userName) {
+        res.status(400).json({ message: "userName already exists" });
       }
     } else {
       // Create a new user using the user model and save it to the database
@@ -38,20 +38,23 @@ router.post("/signin", async (req, res) => {
   try {
     console.log(req.body);
     await connectMongo();
-    var existingUser = await User.findOne({ email: req.body.email });
+    var existingUser = await User.findOne({ userID: req.body.userID });
 
     if (existingUser) {
       if (existingUser.password == req.body.password) {
         res.status(200).json({ message: "Success signin" });
       } else {
-        res.status(400).json({ message: "비밀번호가 일치하지 않습니다" });
+        console.log("Password doesn't match");
+        res.status(400).json({ message: "Password doesn't match" });
       }
     } else {
-      res.status(400).json({ message: "아이디가 존재하지 않습니다" });
+      console.log("Id does not exist");
+      res.status(400).json({ message: "Id does not exist" });
     }
     console.log(existingUser);
   } catch (err) {
     console.error(err);
+    console.log("Internal Server Error");
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
