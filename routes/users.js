@@ -59,5 +59,26 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+router.post("/change", async (req, res) => {
+  try {
+    console.log(req.body);
+    await connectMongo();
+    var updateResult = await User.findOneAndUpdate(
+      { userID: req.body.userID },
+      { userName: req.body.afterName },
+      { new: true }
+    );
+    if (updateResult) {
+      res.status(200).json({ message: "Name changed successfully" });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    console.log("Internal Server Error");
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 
 module.exports = router;

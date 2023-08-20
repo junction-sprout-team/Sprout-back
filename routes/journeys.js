@@ -49,27 +49,6 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// router.get("/all", async (req, res) => {
-//   try {
-//     await connectMongo();
-//     var journeys = await Journey.find({ isMatch: false });
-
-//     // Convert the objectID values to strings
-//     var journeysWithIdStrings = journeys.map(journey => {
-//       var journeyObject = journey.toObject();
-//       journeyObject.objectID = journeyObject._id.toString();
-//       // delete journeyObject._id;
-//       return journeyObject;
-//     });
-
-//     console.log(journeysWithIdStrings);
-//     res.status(200).json(journeysWithIdStrings);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// });
-
 router.get("/riderequest", async (req, res) => {
   try {
     await connectMongo();
@@ -143,45 +122,6 @@ router.get("/rideoffer", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-// router.get("/riderequest", async (req, res) => {
-//   try {
-//     await connectMongo();
-//     var journeys = await Journey.find({ rideType: "Ride", isMatch: false });
-//     var journeysWithIdStrings = journeys.map(journey => {
-//       var journeyObject = journey.toObject();
-//       journeyObject.objectID = journeyObject._id.toString();
-//       // delete journeyObject._id;
-//       return journeyObject;
-//     });
-
-//     console.log(journeysWithIdStrings);
-//     res.status(200).json(journeysWithIdStrings);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// });
-
-// router.get("/rideoffer", async (req, res) => {
-//   try {
-//     await connectMongo();
-//     var journeys = await Journey.find({ rideType: "RideOffer", isMatch: false });
-
-//     var journeysWithIdStrings = journeys.map(journey => {
-//       var journeyObject = journey.toObject();
-//       journeyObject.objectID = journeyObject._id.toString();
-//       // delete journeyObject._id;
-//       return journeyObject;
-//     });
-
-//     console.log(journeysWithIdStrings);
-//     res.status(200).json(journeysWithIdStrings);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// });
 
 router.post("/register", async (req, res) => {
   try {
